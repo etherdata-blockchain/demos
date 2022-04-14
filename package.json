@@ -1,0 +1,19 @@
+{
+  "name": "demos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/etherdata-blockchain/demos.git",
+  "author": "sirily11 <sirily1997@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "turbo": "^1.2.2"
+  },
+  "workspaces": [
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev"
+  }
+}

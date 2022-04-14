@@ -71,6 +71,7 @@ const Home: NextPage = () => {
             value={value}
             style={{ width: 500 }}
             label="Enter your wallet address here"
+            onChange={(e) => setValue(e.target.value)}
             onFocus={() => setShowIndex(1)}
             onBlur={() => setShowIndex(undefined)}
           />

@@ -21,22 +21,22 @@ export default async function handler(
   const form = formidable({uploadDir: "files"});
   const fileAPI = new nodeFile.NodeFile(process.env.FILE_URL!);
 
-  const parse = () => new Promise<string>((resolve,  reject) => {
+  const parse = () => new Promise<File>((resolve,  reject) => {
     form.parse(req, async (err, fields, files) => {
       if (err) {
         reject(err)
         return;
       }
       const fileObject: File = (files.file as any)[0];
-      resolve(fileObject.newFilename)
+      resolve(fileObject)
     });
   })
 
-  const fileName = await parse()
+  const file = await parse()
 
   try{
     const uploadFile = new nodeFile.NodeFileObject({
-      filePath: `files/${fileName}`,
+      filePath: file.filepath,
       days: 2,
     });
     const fileId = await fileAPI.uploadFile(uploadFile);

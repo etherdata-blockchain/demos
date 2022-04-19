@@ -1,0 +1,16 @@
+{
+  "0xabc": [
+    {
+      "fileId": "1e000000000",
+      "original": "version_4 id",
+      "metadata": {
+        "name": "aaa",
+        "size": 10000,
+        "createTime": "2018-01-01 00:00:00",
+        "extension": "jpg",
+        "base64": "Hello ![](0x)"
+      },
+      "version": 5
+    }
+  ]
+}

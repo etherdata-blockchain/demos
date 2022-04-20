@@ -1,7 +1,7 @@
 {
   "name": "demos",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.tsx",
   "repository": "https://github.com/etherdata-blockchain/demos.git",
   "author": "sirily11 <sirily1997@gmail.com>",
   "license": "MIT",
@@ -11,7 +11,8 @@
     "prettier": "^2.6.2"
   },
   "workspaces": [
-    "examples/*"
+    "examples/*",
+    "packages/*"
   ],
   "scripts": {
     "build": "turbo run build",

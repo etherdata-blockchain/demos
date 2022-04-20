@@ -235,6 +235,17 @@
   dependencies:
     ethereumjs-util "^7.1.4"
 
+"@etherdata-blockchain/etherdata-sdk@5.0.4", "@etherdata-blockchain/etherdata-sdk@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.0.4.tgz#c5c82663af1e59eb05fd851efa52b3f20018bd8c"
+  integrity sha512-TYkLFnxVZsDDtKM/uy8tRPLl5Zf0GYVvcH8RTClE71nyoszM8ZIIrAVCAKI7oIsiTCUDcYuCqj9ed030BAgY+g==
+  dependencies:
+    "@types/http-status-codes" "^1.2.0"
+    "@types/url-join" "^4.0.1"
+    axios "^0.21.4"
+    http-status-codes "^2.2.0"
+    url-join "^4.0.1"
+
 "@etherdata-blockchain/etherdata-sdk@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-4.0.2.tgz#77193480bd8a6f8b14f37c8dcf9ac98f3afa6782"
@@ -247,17 +258,6 @@
     http-status-codes "^2.2.0"
     js-file-downloader "^1.1.24"
     nodejs-file-downloader "^4.9.3"
-    url-join "^4.0.1"
-
-"@etherdata-blockchain/etherdata-sdk@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.0.4.tgz#c5c82663af1e59eb05fd851efa52b3f20018bd8c"
-  integrity sha512-TYkLFnxVZsDDtKM/uy8tRPLl5Zf0GYVvcH8RTClE71nyoszM8ZIIrAVCAKI7oIsiTCUDcYuCqj9ed030BAgY+g==
-  dependencies:
-    "@types/http-status-codes" "^1.2.0"
-    "@types/url-join" "^4.0.1"
-    axios "^0.21.4"
-    http-status-codes "^2.2.0"
     url-join "^4.0.1"
 
 "@ethereumjs/common@^2.6.3", "@ethereumjs/common@^2.6.4":
@@ -2375,7 +2375,7 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-transpile-modules@^9.0.0:
+next-transpile-modules@9.0.0, next-transpile-modules@^9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-9.0.0.tgz#133b1742af082e61cc76b02a0f12ffd40ce2bf90"
   integrity sha512-VCNFOazIAnXn1hvgYYSTYMnoWgKgwlYh4lm1pKbSfiB3kj5ZYLcKVhfh3jkPOg1cnd9DP+pte9yCUocdPEUBTQ==

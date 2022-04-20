@@ -2,6 +2,7 @@ import { json_rpc_methods } from "@etherdata-blockchain/etherdata-sdk";
 import {
   Alert,
   Card,
+  CardContent,
   Grid,
   LinearProgress,
   List,
@@ -17,6 +18,7 @@ import { useMetaMask } from "metamask-react";
 import { useRouter } from "next/router";
 import React from "react";
 import useSWR from "swr";
+import { TransactionDisplay } from "ui";
 
 export default function Detail() {
   const router = useRouter();
@@ -46,29 +48,12 @@ export default function Detail() {
       {data === undefined && <LinearProgress />}{" "}
       {error && <Alert severity="error">{JSON.stringify(error)}</Alert>}
       <Typography variant="h4">Transaction</Typography>
-      <Stepper activeStep={Boolean(data?.blockHash) ? 3 : 1}>
-        <Step>
-          <StepLabel>Sent</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Pending</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Confirmed</StepLabel>
-        </Step>
-      </Stepper>
       <Grid container spacing={2}>
         <Grid xs={8} p={2}>
           <Card>
-            {data && (
-              <List>
-                {Object.entries(data).map(([key, value]) => (
-                  <ListItem key={key}>
-                    <ListItemText primary={key} secondary={value} />
-                  </ListItem>
-                ))}
-              </List>
-            )}
+            <CardContent>
+              {data && <TransactionDisplay transaction={data} />}
+            </CardContent>
           </Card>
         </Grid>
         <Grid xs={4} p={2}>

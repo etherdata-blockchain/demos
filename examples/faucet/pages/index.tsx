@@ -1,21 +1,13 @@
-import { AccountBalanceWallet, CheckCircle } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
-import {
-  Collapse,
-  Divider,
-  Stack,
-  TextField,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import axios from "axios";
-import { useMetaMask } from "metamask-react";
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useEffect, useState, useCallback } from "react";
-import { GetServerSideProps } from "next";
 import { json_rpc_methods } from "@etherdata-blockchain/etherdata-sdk";
 import { Account } from "@etherdata-blockchain/etherdata-sdk-account";
+import { AccountBalanceWallet } from "@mui/icons-material";
+import { Stack } from "@mui/material";
+import axios from "axios";
+import { useMetaMask } from "metamask-react";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import { AppTitle } from "ui";
 
 interface Props {
   count: number;
@@ -53,76 +45,22 @@ export default function Index(props: Props) {
 
   return (
     <Stack alignItems={"center"}>
-      <Stack mt={20} mb={5} alignItems="center" justifyItems={"center"}>
-        <Typography variant="h3" fontWeight={"bolder"}>
-          Faucet
-        </Typography>
-        <Typography>
-          This is a faucet for the Etherdata Testnet. It will send you 1 Ether
-          each time.
-        </Typography>
-        <Typography variant="subtitle1" fontWeight={"bold"}>
-          Total transaction count: {props.count}
-        </Typography>
-      </Stack>
-      <Stack
-        alignItems={"center"}
-        justifyContent="center"
-        spacing={2}
-        width="100vw"
-      >
-        <Collapse in={showIndex === undefined || showIndex === 0}>
-          <Stack direction={"row"} alignItems="center" spacing={1}>
-            <LoadingButton
-              loading={status === "connecting"}
-              onMouseEnter={() => setShowIndex(0)}
-              onMouseOut={() => setShowIndex(undefined)}
-              onClick={async () => await connect()}
-              variant="outlined"
-            >
-              {status === "connected"
-                ? "Connected to metamask"
-                : "Connect to metamask"}
-            </LoadingButton>
-            {status === "connected" && (
-              <CheckCircle style={{ color: "green" }} />
-            )}
-          </Stack>
-        </Collapse>
-        <Collapse in={showIndex === undefined}>
-          <Divider style={{ width: "50vw" }}>OR</Divider>
-        </Collapse>
-        <Collapse in={showIndex === undefined || showIndex === 1}>
-          <TextField
-            fullWidth
-            value={value}
-            style={{ width: 500 }}
-            label="Enter your wallet address here"
-            onChange={(e) => setValue(e.target.value)}
-            onFocus={() => setShowIndex(1)}
-            onBlur={() => setShowIndex(undefined)}
-          />
-        </Collapse>
-      </Stack>
-
-      <Collapse in={value.length > 0} style={{ marginTop: 20 }}>
-        <Tooltip title="Accept payment">
-          <LoadingButton
-            loading={isLoading}
-            loadingPosition="start"
-            size="large"
-            startIcon={
-              <AccountBalanceWallet
-                fontSize="large"
-                style={{ color: "green" }}
-              />
-            }
-            onClick={async () => {
-              await requestMoney();
-            }}
-          />
-        </Tooltip>
-      </Collapse>
+      <AppTitle
+        title={"ETD Faucet"}
+        descriptions={[
+          "This is a faucet for the Etherdata Testnet. It will send you 1 Ether each time.",
+          `Total transactions: ${props.count}`,
+        ]}
+        isLoading={isLoading}
+        isConnectingMetaMask={status === "connecting"}
+        isConnected={status === "connected"}
+        actionIcon={<AccountBalanceWallet />}
+        actionText={"Request money"}
+        onClickAction={async () => await requestMoney()}
+        onConnectMetaMaskClick={async () => await connect()}
+        walletAddress={value}
+        onTextEnter={(v) => setValue(v)}
+      />
     </Stack>
   );
 }

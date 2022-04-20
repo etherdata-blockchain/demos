@@ -32,7 +32,8 @@ export default function SenderReceiverField(props: Props) {
         const res = await fetch(`/api/balance/${sender}`);
         return res.json();
       }
-    }
+    },
+    { refreshInterval: 10000 }
   );
 
   const { data: recevierBalance, error: receiverBalanceError } = useSWR(
@@ -42,7 +43,8 @@ export default function SenderReceiverField(props: Props) {
         const res = await fetch(`/api/balance/${receiver}`);
         return res.json();
       }
-    }
+    },
+    { refreshInterval: 10000 }
   );
 
   return (

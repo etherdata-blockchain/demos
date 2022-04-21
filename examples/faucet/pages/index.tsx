@@ -30,18 +30,22 @@ export default function Index(props: Props) {
   const requestMoney = useCallback(async () => {
     setIsLoading(true);
     try {
-      if (account) {
+      // which account we want to send
+      const requestAccount = account || value;
+      if (requestAccount) {
         const result = await axios.post("/api/request_money", {
-          walletAddress: account,
+          walletAddress: requestAccount,
         });
-        await router.push("/tx/" + result.data.transactionId);
+        await router.push(
+          "/tx/" + result.data.transactionId + "?sender=" + requestAccount
+        );
       }
     } catch (err) {
       window.alert(`Error: ${err}`);
     } finally {
       setIsLoading(false);
     }
-  }, [account]);
+  }, [account, value]);
 
   return (
     <Stack alignItems={"center"}>

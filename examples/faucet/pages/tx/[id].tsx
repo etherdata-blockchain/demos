@@ -22,8 +22,8 @@ import { TransactionDisplay } from "ui";
 
 export default function Detail() {
   const router = useRouter();
-  const { status, connect, account, chainId, ethereum } = useMetaMask();
-  const { id } = router.query;
+  const { status, connect, chainId, ethereum } = useMetaMask();
+  const { id, sender } = router.query;
   const { data, error } =
     useSWR<json_rpc_methods.GetTransactionByHashResponseObj>(
       `/api/tx/${id}`,
@@ -35,9 +35,9 @@ export default function Detail() {
     );
 
   const { data: balance, error: balanceError } = useSWR(
-    account,
-    async (account) => {
-      const res = await fetch(`/api/balance/${account}`);
+    sender,
+    async (sender: string) => {
+      const res = await fetch(`/api/balance/${sender}`);
       return res.json();
     },
     { refreshInterval: 2000 }

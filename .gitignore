@@ -106,3 +106,5 @@ dist
 #turbo-cache
 .turbo
 .idea
+packages/file-storage-contract/.DS_Store
+packages/.DS_Store

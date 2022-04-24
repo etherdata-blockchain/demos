@@ -1,18 +1,21 @@
-import { rpc } from "@etherdata-blockchain/etherdata-sdk";
+import { json_rpc_methods } from "@etherdata-blockchain/etherdata-sdk";
+import {
+  BrowserFile,
+  BrowserFileObject,
+} from "@etherdata-blockchain/etherdata-sdk-file-browser";
 import { Clear, Done } from "@mui/icons-material";
 import {
-    Alert,
-    Button,
-    CardMedia,
-    Collapse,
-    Divider,
-    IconButton,
-    Stack,
-    styled,
-    Typography,
+  Alert,
+  Button,
+  CardMedia,
+  Collapse,
+  Divider,
+  IconButton,
+  Stack,
+  styled,
+  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import axios from "axios";
 import { GetServerSideProps } from "next";
 import React, { useCallback } from "react";
 
@@ -28,19 +31,20 @@ const Input = styled("input")({
 export default function Upload({ balance, walletAddress }: Props) {
   // uploaded file state
   const [file, setFile] = React.useState<File | undefined>(undefined);
-  const [fileId, setFileId] = React.useState<string>()
+  const [fileId, setFileId] = React.useState<string>();
 
   // upload user seleted file
   const upload = useCallback(async () => {
     if (file) {
-     try{
-         const formData = new FormData();
-         formData.append("file", file as Blob, `${walletAddress}_${file.name}`);
-         const result = await axios.post("/api/upload", formData);
-         setFileId(result.data.fileId)
-     } catch (err){
-         window.alert("Cannot upload file")
-     }
+      try {
+        const browserFile = new BrowserFile(process.env.NEXT_PUBLIC_FILE_URL!);
+        const fileObject = new BrowserFileObject({ file: file, days: 2 });
+
+        const fileId = await browserFile.uploadFile(fileObject);
+        setFileId(fileId);
+      } catch (err) {
+        window.alert("Cannot upload file");
+      }
     }
   }, [file]);
 
@@ -73,9 +77,9 @@ export default function Upload({ balance, walletAddress }: Props) {
         </label>
       </Collapse>
 
-        <Collapse in={fileId !== undefined}>
-            <Alert severity={"success"}>FileID: {fileId}</Alert>
-        </Collapse>
+      <Collapse in={fileId !== undefined}>
+        <Alert severity={"success"}>FileID: {fileId}</Alert>
+      </Collapse>
       <Stack mt={5} alignItems="center">
         <Typography variant="h6">{file?.name}</Typography>
         {/** Preview */}
@@ -91,7 +95,12 @@ export default function Upload({ balance, walletAddress }: Props) {
           <IconButton>
             <Done color="success" onClick={() => upload()} />
           </IconButton>
-          <IconButton onClick={() => {setFile(undefined); setFileId(undefined)}}>
+          <IconButton
+            onClick={() => {
+              setFile(undefined);
+              setFileId(undefined);
+            }}
+          >
             <Clear color="error" />
           </IconButton>
         </Stack>
@@ -102,7 +111,7 @@ export default function Upload({ balance, walletAddress }: Props) {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   const { walletAddress } = ctx.query;
-  const jsonRPC = new rpc.json_rpc_methods.JsonRpcMethods(process.env.RPC_URL!);
+  const jsonRPC = new json_rpc_methods.JsonRpcMethods(process.env.RPC_URL!);
   const balanceInHex = (await jsonRPC.getBalance(
     walletAddress as string,
     "latest"

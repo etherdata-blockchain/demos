@@ -22,6 +22,7 @@ interface Props {
   onClickAction(): void;
   onConnectMetaMaskClick(): void;
   onTextEnter(content: string): void;
+  metamaskOnly?: boolean;
 }
 
 /**
@@ -75,20 +76,24 @@ export function AppTitle(props: Props): JSX.Element {
             {isConnected && <CheckCircle style={{ color: "green" }} />}
           </Stack>
         </Collapse>
-        <Collapse in={showIndex === undefined}>
-          <Divider style={{ width: "50vw" }}>OR</Divider>
-        </Collapse>
-        <Collapse in={showIndex === undefined || showIndex === 1}>
-          <TextField
-            fullWidth
-            value={walletAddress}
-            style={{ width: 500 }}
-            label="Enter your wallet address here"
-            onChange={(e) => onTextEnter(e.target.value)}
-            onFocus={() => setShowIndex(1)}
-            onBlur={() => setShowIndex(undefined)}
-          />
-        </Collapse>
+        {!props.metamaskOnly && (
+          <Stack spacing={2} alignItems={"center"}>
+            <Collapse in={showIndex === undefined}>
+              <Divider style={{ width: "50vw" }}>OR</Divider>
+            </Collapse>
+            <Collapse in={showIndex === undefined || showIndex === 1}>
+              <TextField
+                fullWidth
+                value={walletAddress}
+                style={{ width: 500 }}
+                label="Enter your wallet address here"
+                onChange={(e) => onTextEnter(e.target.value)}
+                onFocus={() => setShowIndex(1)}
+                onBlur={() => setShowIndex(undefined)}
+              />
+            </Collapse>
+          </Stack>
+        )}
       </Stack>
 
       <Collapse in={Boolean(walletAddress?.length)} style={{ marginTop: 20 }}>

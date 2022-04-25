@@ -8,7 +8,7 @@ import { ArrowCircleRight, ArrowRight } from "@mui/icons-material";
 import qs from "query-string";
 
 const Home: NextPage = () => {
-  const [showIndex, setShowIndex] = useState<number | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
   const { status, connect, account, chainId, ethereum } = useMetaMask();
   const [value, setValue] = useState("");
 
@@ -27,14 +27,16 @@ const Home: NextPage = () => {
         descriptions={[
           "This is a demo of a cloud storage service, you can use it to store files and download them at any time.",
         ]}
-        isLoading={false}
+        isLoading={loading}
         walletAddress={value}
         isConnectingMetaMask={status === "connecting"}
         isConnected={status === "connected"}
         actionIcon={<ArrowCircleRight fontSize="large" />}
         actionText={"Next Page"}
         onClickAction={async () => {
+          setLoading(true);
           await router.push("/upload");
+          setLoading(false);
         }}
         onConnectMetaMaskClick={async () => await connect()}
         onTextEnter={(v) => setValue(v)}

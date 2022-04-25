@@ -31,7 +31,11 @@ export default function Index(props: Props) {
         isConnected={status === "connected"}
         actionIcon={<ArrowCircleRight />}
         actionText={"Send money"}
-        onClickAction={async () => await router.push("/tx")}
+        onClickAction={async () => {
+          setIsLoading(true);
+          await router.push("/tx");
+          setIsLoading(false);
+        }}
         onConnectMetaMaskClick={async () => await connect()}
         walletAddress={value}
         onTextEnter={(v) => setValue(v)}

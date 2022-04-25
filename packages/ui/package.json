@@ -12,10 +12,10 @@
     "@mui/material": "^5.6.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "@etherdata-blockchain/etherdata-sdk": "5.1.0",
+    "@etherdata-blockchain/etherdata-sdk": "5.1.2",
     "material-ui-popup-state": "2.0.0",
     "@mui/x-data-grid": "5.9.0",
-    "@etherdata-blockchain/etherdata-sdk-file-browser": "5.1.1",
+    "@etherdata-blockchain/etherdata-sdk-file-browser": "5.1.2",
     "metamask-react": "2.3.0",
     "file-storage-contract": "*",
     "ethers": "5.6.4"

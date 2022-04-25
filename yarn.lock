@@ -532,10 +532,10 @@
   resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk-errors/-/etherdata-sdk-errors-5.1.0.tgz#a5b346daee5afd5ec345756747679c86352f695e"
   integrity sha512-CG4DLbTb84kXSP0ylhwdCLKe2dMEF7b9XkrwGW9JB/gR7TusuDiDyesJrwHbXpa3TjEQyxTp2m0bqcGwOt04aw==
 
-"@etherdata-blockchain/etherdata-sdk-file-browser@5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk-file-browser/-/etherdata-sdk-file-browser-5.1.1.tgz#c2790768909a59b77c017f210c3933e2955e29e5"
-  integrity sha512-PHProqxj4slnSSX5X8G2nXLFaW1Tkrl1vzMip2DWlg2Oo3Fa5dmYUwj/1dKlXOvAiGqwVlYW9ig9smoLRPH1sQ==
+"@etherdata-blockchain/etherdata-sdk-file-browser@5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk-file-browser/-/etherdata-sdk-file-browser-5.1.2.tgz#b93e6aa4121b061356e0eeb328bb39b059f4bba0"
+  integrity sha512-gTrfkUB9hZ8j8g9u0oGc8BiZKM67jUeTLcV+shwKa/D1lwSVuyEfwTmZpz+9SsuR6RgEWXR6gubLRVKZiHWIig==
   dependencies:
     "@etherdata-blockchain/etherdata-sdk-common" "*"
     "@etherdata-blockchain/etherdata-sdk-errors" "*"
@@ -543,13 +543,14 @@
     "@types/url-join" "^4.0.1"
     axios "^0.21.4"
     http-status-codes "^2.2.0"
+    js-file-downloader "^1.1.24"
     jsdom "^19.0.0"
     url-join "^4.0.1"
 
-"@etherdata-blockchain/etherdata-sdk@5.1.0", "@etherdata-blockchain/etherdata-sdk@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.1.0.tgz#f80204b27a6fa343691dc588963c9d4f34631eaa"
-  integrity sha512-KmoorPs9aeQ+Dokj9/aq9TSVZSd/iH6Zcs9+wKoI8tvQqrW6PM4LX3wpZor5HnXNVTkRrAwR8KPZc6ban4rLtA==
+"@etherdata-blockchain/etherdata-sdk@5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.1.2.tgz#6dc5e4dd3e2a0e880f88ab6bf2adf6ac7621d46b"
+  integrity sha512-B/S1QCaZiGNkJ3qi7AU+Uh5jo5OhXpwyhlsYxdncxl+CfApq4HjWbRjljbgY+PN+W/VBuxfDIjui41F/YkKmog==
   dependencies:
     "@types/http-status-codes" "^1.2.0"
     "@types/url-join" "^4.0.1"
@@ -561,6 +562,17 @@
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.0.4.tgz#c5c82663af1e59eb05fd851efa52b3f20018bd8c"
   integrity sha512-TYkLFnxVZsDDtKM/uy8tRPLl5Zf0GYVvcH8RTClE71nyoszM8ZIIrAVCAKI7oIsiTCUDcYuCqj9ed030BAgY+g==
+  dependencies:
+    "@types/http-status-codes" "^1.2.0"
+    "@types/url-join" "^4.0.1"
+    axios "^0.21.4"
+    http-status-codes "^2.2.0"
+    url-join "^4.0.1"
+
+"@etherdata-blockchain/etherdata-sdk@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.1.0.tgz#f80204b27a6fa343691dc588963c9d4f34631eaa"
+  integrity sha512-KmoorPs9aeQ+Dokj9/aq9TSVZSd/iH6Zcs9+wKoI8tvQqrW6PM4LX3wpZor5HnXNVTkRrAwR8KPZc6ban4rLtA==
   dependencies:
     "@types/http-status-codes" "^1.2.0"
     "@types/url-join" "^4.0.1"
@@ -8249,6 +8261,11 @@ jest@27.5.1:
     "@jest/core" "^27.5.1"
     import-local "^3.0.2"
     jest-cli "^27.5.1"
+
+js-file-downloader@^1.1.24:
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/js-file-downloader/-/js-file-downloader-1.1.24.tgz#58102debfd86174462b650b0c251a223fa4b291a"
+  integrity sha512-DbOKEtofflVV8DfdFEkkykJQW1jWXT56+G2dC6dn1tLGRHjoVsdMpYKKyxQb/jJv2CGNxuTvMTpPmqYEf+LTGA==
 
 js-sha3@0.5.7, js-sha3@^0.5.7:
   version "0.5.7"

@@ -7,8 +7,13 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   Menu,
   MenuItem,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import {
@@ -33,8 +38,10 @@ export default function ActionMenu({ row }: Props) {
   const { download } = useDownload();
   const [isDeleting, setIsDeleting] = React.useState(false);
   const [confirmDialogOpen, setConfirmDialogOpen] = React.useState(false);
+  const [fileDiloagOpen, setFileDiloagOpen] = React.useState(false);
   const [fileId, setFileId] = React.useState<string | undefined>(undefined);
   const { provider } = useFileStorage({});
+  const [copied, setCopied] = React.useState(false);
 
   const deleteFile = useCallback(async () => {
     if (provider) {
@@ -60,7 +67,7 @@ export default function ActionMenu({ row }: Props) {
         <MenuItem
           onClick={() => {
             popupState.close();
-            window.alert(row.row.fid);
+            setFileDiloagOpen(true);
           }}
         >
           View FID
@@ -103,6 +110,39 @@ export default function ActionMenu({ row }: Props) {
           >
             Confirm
           </LoadingButton>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={fileDiloagOpen}
+        onClose={() => setFileDiloagOpen(false)}
+        fullWidth
+      >
+        <DialogTitle>File ID</DialogTitle>
+        <DialogContent>
+          <Tooltip
+            title={copied ? "Copied" : "Copy to clipboard"}
+            onClose={() => setCopied(false)}
+          >
+            <ListItemButton
+              onClick={() => {
+                navigator.clipboard.writeText(row.row.fid);
+                setCopied(true);
+              }}
+            >
+              <ListItemText
+                primary={<Typography>File ID</Typography>}
+                secondary={
+                  <Typography noWrap textOverflow={"ellipsis"}>
+                    {row.row.fid}
+                  </Typography>
+                }
+              />
+            </ListItemButton>
+          </Tooltip>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setFileDiloagOpen(false)}>Close</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

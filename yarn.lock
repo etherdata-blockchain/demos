@@ -547,6 +547,21 @@
     jsdom "^19.0.0"
     url-join "^4.0.1"
 
+"@etherdata-blockchain/etherdata-sdk-file-browser@5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk-file-browser/-/etherdata-sdk-file-browser-5.1.3.tgz#22385333d57cc76be3751e59306c845485f8edcb"
+  integrity sha512-AmXhEJGNU5TAIvvJSYSA0/gTu4aG8b1Qdwrhy6Grof3WlhtLmFY+HK8SDWT89PEd1aIOWVlFM3lzYotjKrEDEg==
+  dependencies:
+    "@etherdata-blockchain/etherdata-sdk-common" "*"
+    "@etherdata-blockchain/etherdata-sdk-errors" "*"
+    "@types/http-status-codes" "^1.2.0"
+    "@types/url-join" "^4.0.1"
+    axios "^0.21.4"
+    http-status-codes "^2.2.0"
+    js-file-downloader "^1.1.24"
+    jsdom "^19.0.0"
+    url-join "^4.0.1"
+
 "@etherdata-blockchain/etherdata-sdk@5.1.2":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@etherdata-blockchain/etherdata-sdk/-/etherdata-sdk-5.1.2.tgz#6dc5e4dd3e2a0e880f88ab6bf2adf6ac7621d46b"

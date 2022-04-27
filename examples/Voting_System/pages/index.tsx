@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       <AppTitle
         title={"Voting System Demo"}
         descriptions={[
-          "This is a demo of a voting system, you can use this system to propose a candidate and vote for her/him.",
+          "This is a demo of a voting system, you can use this system to vote for listed candidates.",
         ]}
         isLoading={false}
         walletAddress={value}

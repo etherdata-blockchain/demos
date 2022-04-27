@@ -1,3 +1,4 @@
+import { Provider } from "@ethersproject/abstract-provider";
 import { Clear, Done } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import {
@@ -13,7 +14,7 @@ import moment from "moment";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React from "react";
-import { FileTable, useVoting } from "ui";
+import { useVoting } from "ui";
 import { Config } from "../configs/config";
 
 interface Props {
@@ -26,89 +27,68 @@ const Input = styled("input")({
 
 const width = "80vw";
 
-export default function Upload({ page }: Props) {
+export default function Voting({ page }: Props) {
   
-  const {  } = useVoting({
-  });
+  const { proposals, name1, name2, name3, name4, name5, vote1, vote2, vote3, vote4, vote5, error, provider } = useVoting({ });
+
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() =>
+      initProposals(), 300);
+    return () => clearTimeout(timeout);
+    async function initProposals() {
+      provider?.addProposal("Harry");
+      provider?.addProposal("Jones");
+      provider?.addProposal("Lily");
+      provider?.addProposal("William");
+      provider?.addProposal("Alice");
+    }
+    initProposals();
+  }, []);
+
+  
+  /**/
+  //initProposals();
   const [value, setValue] = React.useState<any>("");
   const router = useRouter();
 
-  return (
-    <Stack alignItems={"center"} width="100vw" spacing={2}>
-      <div style={{ height: 120 }} />
-      <Card variant="outlined" style={{ width }}>
-        <CardContent>
-          <Stack direction={"row"} justifyContent={"space-between"}>
-            <Stack>
-              <Typography>Upload</Typography>
-              <Stack direction={"row"} alignItems="center">
-                <Typography fontWeight={"bold"}>
-                  {file?.name ?? "No file selected"}
-                </Typography>
-                <Collapse in={file !== undefined}>
-                  <div>
-                    <LoadingButton
-                      loading={isUploading}
-                      loadingPosition="start"
-                      startIcon={<Done color="success" />}
-                      onClick={async () => {
-                        await upload();
-                      }}
-                    />
+	const [newCandidateID, setNewCandidateID] = React.useState();
+	const [voteForCandidateID, setVoteForCandidateID] = React.useState('');
 
-                    <LoadingButton
-                      startIcon={<Clear color="error" />}
-                      loadingPosition="start"
-                      onClick={() => {
-                        setFile(undefined);
-                        setValue("");
-                      }}
-                    />
-                  </div>
-                </Collapse>
-              </Stack>
-            </Stack>
-            <label htmlFor="icon-button-file">
-              <Input
-                accept="image/*"
-                id="icon-button-file"
-                type="file"
-                value={value}
-                onChange={(e) => {
-                  setValue(e.target.value);
-                  if (e.target.files) {
-                    setFile(e.target.files[0]);
-                  }
-                }}
-              />
-              <Button component="span">Upload</Button>
-            </label>
-          </Stack>
-        </CardContent>
-      </Card>
-      <FileTable
-        rows={
-          files?.files.map((f: any, index: number) => ({
-            id: (page - 1) * Config.defaultNumberPerPage + index,
-            fid: f.fileId,
-            type: f.fileType,
-            name: f.fileName,
-            date: `${moment(f.fileCreated.toNumber())}`,
-            size: f.fileSize,
-          })) ?? []
-        }
-        width={width}
-        pageSize={Config.defaultNumberPerPage}
-        numPages={Math.ceil(
-          ((files?.count as number) ?? 1) / Config.defaultNumberPerPage
-        )}
-        currentPage={page}
-        onPageChange={(page: number) => {
-          router.push(`/upload?page=${page}`);
-        }}
-      />
-    </Stack>
-  );
+  const handleVoteForCandidateID = (e) => {
+		setNewCandidateID(e.target.value);
+	};
+  
+
+	return (
+		<div style={{ padding: '3rem 5rem' }}>
+			<h1>Voting System</h1>
+			<div>
+				<h4>Candidate Number: {proposals}</h4>
+        <h5>Candidate [1]: {name1}; total votes is: {vote1}</h5>
+        <h5>Candidate [2]: {name2}; total votes is: {vote2}</h5>
+        <h5>Candidate [3]: {name3}; total votes is: {vote3}</h5>
+        <h5>Candidate [4]: {name4}; total votes is: {vote4}</h5>
+        <h5>Candidate [5]: {name5}; total votes is: {vote5}</h5>
+			</div>
+			
+			<div>
+				<h4>Give Votes to a candidate (Fill in her/his ID)</h4>
+				<div
+					style={{
+						width: '15em',
+						display: 'flex',
+						justifyContent: 'space-between',
+					}}>
+					<input type="text" value={value} onChange={(e)=>setValue(e.target.value)} />
+					<button onClick={async () => {
+                        await provider?.voteForProposal(value);
+                      }}>Vote For</button>
+				</div>
+			</div>
+		</div>
+		
+	);
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {

@@ -53,5 +53,6 @@ For more monorepo development info, please refer to [Turbo repo's](https://turbo
 1. Create any new smart contract under packages/ folder
 2. Create any new app under examples/ folder
 3. Add dependency under your examples/YOUR_APP/package.json
+4. Change `.env.example` to `.env` and fill in the value
 
 The frontend applications are written in React with typescript using [Next.js framework](https://nextjs.org/docs). And all examples are hosted on [Vercel](https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website). Please check their offical documentations for more details.

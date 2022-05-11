@@ -47,7 +47,7 @@ examples/
 packages/
 ├─ ui/
 ├─ file_storage_contract/
-├─ Voting_System/
+├─ VotingDapp/
 
 ```
 

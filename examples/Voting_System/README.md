@@ -1,7 +1,29 @@
-# Personal cloud storage demo using Etherdata Blockchain
+# Voting System Demo Using Etherdata Blockchain
 
-This package use [file-storage-contract](../../packages//file_storage_contract/) to store files on the blockchain.
+This package use [VotingDapp](../../packages//VotingDapp/) to support voting on the blockchain.
 
-1. Store your files on the Etherdata blockchain
-2. Store the metadata using smart contracts
-3. Access your files using the Etherdata blockchain
+## Set up
+Create a `.env` file with following fields
+
+```
+RPC_URL=
+NEXT_PUBLIC_FILE_URL=
+NEXT_PUBLIC_CONTRACT_ADDRESS=
+```
+
+## Quick run the demo
+Install dependencies
+```
+yarn
+```
+
+Start dev server
+
+```
+yarn dev
+```
+
+## Supported Functions
+1. Initialize candidates on the blockchain
+2. Iteract with the front-end to obtain total number of candidtes and their details
+3. Vote for a specific candidate using the Etherdata blockchain

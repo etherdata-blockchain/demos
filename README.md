@@ -3,13 +3,15 @@ List of projects based on Etherdata Blockchain
 
 ![logo](./images/learn-blockchain.png)
 
-- [x] [Simple File Upload](https://demos.file-upload.debugchain.net) (or https://demos-eta.vercel.app/) (source: [here](https://github.com/etherdata-blockchain/demos/tree/main/examples/file-upload/)
+- [x] [Simple File Upload](https://demos.file-upload.debugchain.net) (or https://demos-eta.vercel.app/) (source: [here](https://github.com/etherdata-blockchain/demos/tree/main/examples/file-upload/))
 
 - [x] [Faucet](https://faucet.debugchain.net/) (source: [here](https://github.com/etherdata-blockchain/demos/tree/main/examples/faucet/)) 
 
 - [x] [Transaction](https://demos.transaction.debugchain.net/) (source: [here](https://github.com/etherdata-blockchain/demos/tree/main/examples/transaction))
 
 - [x] [File Storage](https://demos.personal-storage.debugchain.net/)(source: [here](./examples/personal_storage/) and smart contract: [here](https://github.com/etherdata-blockchain/demos/tree/main/packages/file_storage_contract/))
+
+- [x] [New!] Voting System --- need to set the environment and deploy the contract first in [VotingDapp](packages//VotingDapp/) and set the environment in [Voting_System](examples//Voting_System/). See them in the corresponding file README file.
 
 
 Install dependencies
@@ -31,6 +33,8 @@ Start dev server
 yarn dev
 ```
 
+
+
 ## Project structure
 
 ```
@@ -39,9 +43,11 @@ examples/
 ├─ file-upload/
 ├─ personal_storage/
 ├─ transaction/
+├─ Voting_System/
 packages/
 ├─ ui/
 ├─ file_storage_contract/
+├─ Voting_System/
 
 ```
 

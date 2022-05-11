@@ -11,7 +11,7 @@ List of projects based on Etherdata Blockchain
 
 - [x] [File Storage](https://demos.personal-storage.debugchain.net/)(source: [here](./examples/personal_storage/) and smart contract: [here](https://github.com/etherdata-blockchain/demos/tree/main/packages/file_storage_contract/))
 
-- [x] [New!] Voting System --- need to set the environment and deploy the contract first in [VotingDapp](packages//VotingDapp/) and set the environment in [Voting_System](examples//Voting_System/). See them in the corresponding file README file.
+- [x] [New!] Voting System --- need to set the environment and deploy the contract first in [VotingDapp](packages//VotingDapp/) and set the environment in [Voting_System](examples//Voting_System/). See them in the corresponding folder's README file.
 
 
 Install dependencies

@@ -23,6 +23,7 @@ interface FileStorageInterface extends ethers.utils.Interface {
   functions: {
     "addFile((string,string,string,uint256,string,uint256))": FunctionFragment;
     "deleteFile(uint256)": FunctionFragment;
+    "enterAddress(address)": FunctionFragment;
     "getFileSize()": FunctionFragment;
     "getFilesInRange(uint256,uint256)": FunctionFragment;
   };
@@ -45,6 +46,10 @@ interface FileStorageInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "enterAddress",
+    values: [string]
+  ): string;
+  encodeFunctionData(
     functionFragment: "getFileSize",
     values?: undefined
   ): string;
@@ -55,6 +60,10 @@ interface FileStorageInterface extends ethers.utils.Interface {
 
   decodeFunctionResult(functionFragment: "addFile", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "deleteFile", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "enterAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "getFileSize",
     data: BytesLike
@@ -128,6 +137,11 @@ export class FileStorage extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    enterAddress(
+      addr: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     getFileSize(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     getFilesInRange(
@@ -165,6 +179,11 @@ export class FileStorage extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  enterAddress(
+    addr: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   getFileSize(overrides?: CallOverrides): Promise<BigNumber>;
 
   getFilesInRange(
@@ -196,6 +215,8 @@ export class FileStorage extends BaseContract {
     ): Promise<void>;
 
     deleteFile(index: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    enterAddress(addr: string, overrides?: CallOverrides): Promise<void>;
 
     getFileSize(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -235,6 +256,11 @@ export class FileStorage extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    enterAddress(
+      addr: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     getFileSize(overrides?: CallOverrides): Promise<BigNumber>;
 
     getFilesInRange(
@@ -259,6 +285,11 @@ export class FileStorage extends BaseContract {
 
     deleteFile(
       index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    enterAddress(
+      addr: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

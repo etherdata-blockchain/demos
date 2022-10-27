@@ -29,7 +29,7 @@ export default async function handler(
 
   const transactionCount = await method.getTransactionCount(
     account.address,
-    "latest"
+    "pending"
   );
   const gasPrice = await method.gasPrice();
 

@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.8.5 <0.9.0;
 
-
 contract FileStorage {
     struct FileMetaData {
         string fileId;
@@ -21,13 +20,13 @@ contract FileStorage {
     }
 
     // delete file by index
-    function deleteFile(uint256 index) public{
-         if (index < _files[msg.sender].length) {
-           for (uint i = index; i < _files[msg.sender].length - 1; i++){
-               _files[msg.sender][i] = _files[msg.sender][i + 1];
-           }
-           _files[msg.sender].pop();
-         } 
+    function deleteFile(uint256 index) public {
+        if (index < _files[msg.sender].length) {
+            for (uint256 i = index; i < _files[msg.sender].length - 1; i++) {
+                _files[msg.sender][i] = _files[msg.sender][i + 1];
+            }
+            _files[msg.sender].pop();
+        }
     }
 
     // get list of _files in range of [start, end)
@@ -54,4 +53,6 @@ contract FileStorage {
     function getFileSize() public view returns (uint256) {
         return _files[msg.sender].length;
     }
+
+    function enterAddress(address addr) public {}
 }

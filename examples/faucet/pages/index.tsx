@@ -72,7 +72,7 @@ export default function Index(props: Props) {
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   const method = new json_rpc_methods.JsonRpcMethods(process.env.RPC_URL!);
   const account = new Account(process.env.PK!);
-  const count = await method.getTransactionCount(account.address, "latest");
+  const count = await method.getTransactionCount(account.address, "pending");
   return {
     props: {
       count: parseInt(count as any, 16),
